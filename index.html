@@ -1,341 +1,465 @@
 <head>
-<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
-<script src="./config_17894256.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
-<script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+	<script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+	<script src="./config_17894256.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+	<script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+	
+	<style>
+	
+			body {
+				background-color: #454141;
+			}
+			
+			body.dark-mode {
+				background-color: #222222;
+			}	
+	
+			.mol-container {
+				position: relative;
+				text-align: center;
+				margin: 5px;
+				width: 75px;
+				height: 95px;
+				cursor: pointer;
+				overflow: hidden;
+				border-radius: 10px; /* rounded corners */
+			}
+	
+			.mol-wrapper {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border-radius: 10px;
+				overflow: hidden;
+				pointer-events: none;
+				background-color: transparent;
+			}
+	
+	
+			.mol-container.selected {
+				outline: 5px solid #99ff0085;
+			}
+	
+			.mol-container.large {
+				margin: 5px;
+				position: relative;
+				width: 150px;
+				height: 150px;
+				/* Add styles specific to 3Dmol.js here */
+			}
+	
+			.gallery {
+				display: flex;
+				flex-wrap: wrap;
+				width: 100%; /* Sets the width of the gallery to 80% of its parent */
+				margin: 0 auto; /* Centers the gallery horizontally */
+				justify-content: center; /* Centers the images within the gallery */
+			}
+			
+			.mol-text {
+				position: absolute;
+				width: 100%;
+				bottom: 1.2px; /* Adjust this value to position the text higher or lower */
+				text-align: center;
+				font-family: Arial, sans-serif;
+				font-size: 9.5px; /* Adjust as needed */
+				z-index: 100;
+				font-weight: bold;
+			}
+			
+			.button-container {
+				position: fixed;
+				top: 10px;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				gap: 10px;
+				z-index: 999;
+			}		
+	
+			.button-container button {
+				background-color: #8b8a8a; /* Dark grey background */
+				color: #000000; /* White text */
+				border: none;
+				padding: 10px 20px;
+				font-family: 'Arial', sans-serif;
+				font-size: 14px;
+				border-radius: 8px; 
+				cursor: pointer;
+				transition: background-color 0.3s ease; */
+			}
+	
+			.button-container input[data-coloris] {
+				background-color: #333;
+				color: #fff;
+				font-family: 'Arial', sans-serif;
+				font-size: 14px;
+				padding: 10px;
+				border: none;
+				border-radius: 10px;
+				width: 150px;
+				height: 40px;
+				cursor: pointer;
+			}
+	
+			.button-container button:hover {
+				background-color: #636363; /* Slightly darker on hover */
+			}
+	
+	</style>
+	
+	</head>
+	
+	
+	<body>
+	
+	<div class="periodic-table">
+	<div class="gallery">
+	<div class="mol-container" id="C1"  data-current-element="H"><div class="mol-wrapper"></div><div class="mol-text">Hydrogen</div></div>
+	<div class="mol-container" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" ><div class="mol-text"></div></div>
+	<div class="mol-container" ><div class="mol-text"></div></div>
+	<div class="mol-container" ><div class="mol-text"></div></div>
+	<div class="mol-container" ><div class="mol-text"></div></div>
+	<div class="mol-container" ><div class="mol-text"></div></div>
+	<div class="mol-container" id="C2"  data-current-element="He"><div class="mol-text">Helium</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" id="C3"  data-current-element="Li"><div class="mol-text">Lithium</div></div>
+	<div class="mol-container" id="C4"  data-current-element="Be"><div class="mol-text">Beryllium</div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" id="C5"  data-current-element="B"><div class="mol-text">Boron</div></div>
+	<div class="mol-container" id="C6"  data-current-element="C"><div class="mol-text">Carbon</div></div>
+	<div class="mol-container" id="C7"  data-current-element="N"><div class="mol-text">Nitrogen</div></div>
+	<div class="mol-container" id="C8"  data-current-element="O"><div class="mol-text">Oxygen</div></div>
+	<div class="mol-container" id="C9"  data-current-element="F"><div class="mol-text">Fluorine</div></div>
+	<div class="mol-container" id="C10"  data-current-element="Ne"><div class="mol-text">Neon</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" id="C11"  data-current-element="Na"><div class="mol-text">Sodium</div></div>
+	<div class="mol-container" id="C12"  data-current-element="Mg"><div class="mol-text">Magnesium</div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" id="C13"  data-current-element="Al"><div class="mol-text">Aluminium</div></div>
+	<div class="mol-container" id="C14"  data-current-element="Si"><div class="mol-text">Silicium</div></div>
+	<div class="mol-container" id="C15"  data-current-element="P"><div class="mol-text">Phosphor</div></div>
+	<div class="mol-container" id="C16"  data-current-element="S"><div class="mol-text">Sulfur</div></div>
+	<div class="mol-container" id="C17"  data-current-element="Cl"><div class="mol-text">Chlorine</div></div>
+	<div class="mol-container" id="C18"  data-current-element="Ar"><div class="mol-text">Argon</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" id="C19"  data-current-element="K"><div class="mol-text">Potassium</div></div>
+	<div class="mol-container" id="C20"  data-current-element="Ca"><div class="mol-text">Calcium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C21"  data-current-element="Sc"><div class="mol-text">Scandium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C22"  data-current-element="Ti"><div class="mol-text">Titanium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C23"  data-current-element="V"><div class="mol-text">Vanadium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C24"  data-current-element="Cr"><div class="mol-text">Chromium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C25"  data-current-element="Mn"><div class="mol-text">Manganese</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C26"  data-current-element="Fe"><div class="mol-text">Iron</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C27"  data-current-element="Co"><div class="mol-text">Cobalt</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C28"  data-current-element="Ni"><div class="mol-text">Nickel</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C29"  data-current-element="Cu"><div class="mol-text">Copper</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C30"  data-current-element="Zn"><div class="mol-text">Zinc</div></div>
+	<div class="mol-container" id="C31"  data-current-element="Ga"><div class="mol-text">Gallium</div></div>
+	<div class="mol-container" id="C32"  data-current-element="Ge"><div class="mol-text">Germanium</div></div>
+	<div class="mol-container" id="C33"  data-current-element="As"><div class="mol-text">Arsenic</div></div>
+	<div class="mol-container" id="C34"  data-current-element="Se"><div class="mol-text">Selenium</div></div>
+	<div class="mol-container" id="C35"  data-current-element="Br"><div class="mol-text">Bromine</div></div>
+	<div class="mol-container" id="C36"  data-current-element="Kr"><div class="mol-text">Krypton</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" id="C37"  data-current-element="Rb"><div class="mol-text">Rubidium</div></div>
+	<div class="mol-container" id="C38"  data-current-element="Sr"><div class="mol-text">Strontium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C39"  data-current-element="Y"><div class="mol-text">Yttrium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C40"  data-current-element="Zr"><div class="mol-text">Zirconium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C41"  data-current-element="Nb"><div class="mol-text">Niobium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C42"  data-current-element="Mo"><div class="mol-text">Molybdenium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C43"  data-current-element="Tc"><div class="mol-text">Technetium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C44"  data-current-element="Ru"><div class="mol-text">Ruthenium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C45"  data-current-element="Rh"><div class="mol-text">Rhodium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C46"  data-current-element="Pd"><div class="mol-text">Palladium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C47"  data-current-element="Ag"><div class="mol-text">Silver</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C48"  data-current-element="Cd"><div class="mol-text">Cadmium</div></div>
+	<div class="mol-container" id="C49"  data-current-element="In"><div class="mol-text">Indium</div></div>
+	<div class="mol-container" id="C50"  data-current-element="Sn"><div class="mol-text">Tin</div></div>
+	<div class="mol-container" id="C51"  data-current-element="Sb"><div class="mol-text">Antimony</div></div>
+	<div class="mol-container" id="C52"  data-current-element="Te"><div class="mol-text">Tellurium</div></div>
+	<div class="mol-container" id="C53"  data-current-element="I"><div class="mol-text">Iodine</div></div>
+	<div class="mol-container" id="C54"  data-current-element="Xe"><div class="mol-text">Xenon</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" id="C55"  data-current-element="Cs"><div class="mol-text">Cesium</div></div>
+	<div class="mol-container" id="C56"  data-current-element="Ba"><div class="mol-text">Barium</div></div>
+	<div class="mol-container" data-toggle="hide"><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" id="C72"  data-current-element="Hf"><div class="mol-text">Hafnium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C73"  data-current-element="Ta"><div class="mol-text">Tantalum</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C74"  data-current-element="W"><div class="mol-text">Tungsten</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C75"  data-current-element="Re"><div class="mol-text">Rhenium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C76"  data-current-element="Os"><div class="mol-text">Osmium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C77"  data-current-element="Ir"><div class="mol-text">Iridium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C78"  data-current-element="Pt"><div class="mol-text">Platinum</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C79"  data-current-element="Au"><div class="mol-text">Gold</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C80"  data-current-element="Hg"><div class="mol-text">Mercury</div></div>
+	<div class="mol-container" id="C81"  data-current-element="Tl"><div class="mol-text">Thallium</div></div>
+	<div class="mol-container" id="C82"  data-current-element="Pb"><div class="mol-text">Lead</div></div>
+	<div class="mol-container" id="C83"  data-current-element="Bi"><div class="mol-text">Bismuth</div></div>
+	<div class="mol-container" id="C84"  data-current-element="Po"><div class="mol-text">Polonium</div></div>
+	<div class="mol-container" id="C85"  data-current-element="At"><div class="mol-text">Astatine</div></div>
+	<div class="mol-container" id="C86"  data-current-element="Rn"><div class="mol-text">Radon</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" id="C87"  data-current-element="Fr"><div class="mol-text">Francium</div></div>
+	<div class="mol-container" id="C88"  data-current-element="Ra"><div class="mol-text">Radium</div></div>
+	<div class="mol-container" data-toggle="hide"><div class="mol-text"></div></div>
+	<div class="mol-container"  data-toggle="hide" id="C104"  data-current-element="Rf"><div class="mol-text">Rutherfordium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C105"  data-current-element="Db"><div class="mol-text">Dubnium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C106"  data-current-element="Sg"><div class="mol-text">Seaborgium</div></div>
+	<div class="mol-container"  data-toggle="hide" id="C107"  data-current-element="Bh"><div class="mol-text">Bohrium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C108" data-current-element="Hs"><div class="mol-text">Hassium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C109" data-current-element="Mt"><div class="mol-text">Meitnerium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C110" data-current-element="Ds"><div class="mol-text">Darmstadtium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C111" data-current-element="Rg"><div class="mol-text">Roentgenium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C112" data-current-element="Cn"><div class="mol-text">Copernicium</div></div>
+	<div class="mol-container" id="C113"  data-current-element="Nh"><div class="mol-text">Nihonium</div></div>
+	<div class="mol-container" id="C114"  data-current-element="Fl"><div class="mol-text">Flerovium</div></div>
+	<div class="mol-container" id="C115"  data-current-element="Mc"><div class="mol-text">Moscovium</div></div>
+	<div class="mol-container" id="C116"  data-current-element="Lv"><div class="mol-text">Livermorium</div></div>
+	<div class="mol-container" id="C117"  data-current-element="Ts"><div class="mol-text">Tennessine</div></div>
+	<div class="mol-container" id="C118"  data-current-element="Og"><div class="mol-text">Oganesson</div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" id="C57_2" data-current-element="La"><div class="mol-text">Lanthanum</div></div>
+	<div class="mol-container" data-toggle="hide" id="C58" data-current-element="Ce"><div class="mol-text">Cerium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C59" data-current-element="Pr"><div class="mol-text">Praseodymium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C60" data-current-element="Nd"><div class="mol-text">Neodymium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C61" data-current-element="Pm"><div class="mol-text">Promethium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C62" data-current-element="Sm"><div class="mol-text">Samarium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C63" data-current-element="Eu"><div class="mol-text">Europium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C64" data-current-element="Gd"><div class="mol-text">Gadolinium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C65" data-current-element="Tb"><div class="mol-text">Terbium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C66" data-current-element="Dy"><div class="mol-text">Dysprosium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C67" data-current-element="Ho"><div class="mol-text">Holmium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C68" data-current-element="Er"><div class="mol-text">Erbium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C69" data-current-element="Tm"><div class="mol-text">Thulium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C70" data-current-element="Yb"><div class="mol-text">Ytterbium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C71" data-current-element="Lu"><div class="mol-text">Lutetium</div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	</div>
+	<div class="gallery">
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	<div class="mol-container" data-toggle="hide" id="C89_2" data-current-element="Ac"><div class="mol-text">Actinium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C90" data-current-element="Th"><div class="mol-text">Thorium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C91" data-current-element="Pa"><div class="mol-text">Protactinium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C92" data-current-element="U"><div class="mol-text">Uranium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C93" data-current-element="Np"><div class="mol-text">Neptunium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C94" data-current-element="Pu"><div class="mol-text">Plutonium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C95" data-current-element="Am"><div class="mol-text">Americium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C96" data-current-element="Cm"><div class="mol-text">Curium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C97" data-current-element="Bk"><div class="mol-text">Berkelium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C98" data-current-element="Cf"><div class="mol-text">Californium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C99" data-current-element="Es"><div class="mol-text">Einsteinium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C100" data-current-element="Fm"><div class="mol-text">Fermium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C101" data-current-element="Md"><div class="mol-text">Mendelevium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C102" data-current-element="No"><div class="mol-text">Nobelium</div></div>
+	<div class="mol-container" data-toggle="hide" id="C103" data-current-element="Lr"><div class="mol-text">Lawrencium</div></div>
+	<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
+	</div>
+	</div>
+	<div class="button-container">
+	<button id="toggle-transition-metals">toggle transition metals</button>
+	<button id="toggle-lanth-act-button">toggle lanthanoids and actinoids</button>
+	<button id="toggle-dark-mode">toggle dark mode</button>
+	<input type="text" data-coloris>
+	<button onclick="generatePymolAndDownload()">PyMol color scheme</button>
+	</div>
+	
+	<script>
+	let selectedViewer = null;
+	let selectedContainer = null;
+	C_S = C_S;
 
-<style>
-
-		body {
-			background-color: #454141;
-		}
+	$(document).ready(function() {   
+		var divElements = document.querySelectorAll("[id^='C']");
 		
-		body.dark-mode {
-			background-color: #222222;
-		}	
+		divElements.forEach(function(divElement) {
+			// Get the currentElement value from the data attribute of each div element
+			var currentElement = divElement.getAttribute("data-current-element");
 
-		.mol-container {
-			margin: 5px;
-			position: relative;
-			width: 75px;
-			height: 85px; /* taller to create more room */
-			text-align: center;
-			/* Add styles specific to 3Dmol.js here */
-			cursor: pointer;
-			border: 2px solid transparent;
-		}
+			// Create a unique viewer for each div element
+			var viewer = $3Dmol.createViewer(divElement.id, {
+				// defaultcolors: $3Dmol.elementColors.rasmol, nomouse: true
+				// defaultcolors: $3Dmol.elementColors.default, nomouse: true
+				// defaultcolors: $3Dmol.elementColors.orangeCarbon, nomouse: true
+				// defaultcolors: $3Dmol.elementColors.Jmol, nomouse: true
+				defaultcolors: C_S, nomouse: true
+			});
+			
+			// Store the viewer inside the divElement
+			divElement.viewerInstance = viewer;
+			console.log(`Stored viewer for: ${currentElement}`, divElement.viewerInstance);
 
-		.mol-container.selected {
-			border: 2px solid #00FF00;
-		}
 
-		.mol-container.large {
-			margin: 5px;
-			position: relative;
-			width: 150px;
-			height: 150px;
-			/* Add styles specific to 3Dmol.js here */
-		}
+			var xyz = `1
+	* (null), Energy   -276.0000000    
+	${currentElement}    0.0000000  0.0000000   0.0000000 
+			`; 
+			viewer.addModel(xyz, "xyz");
+			viewer.setStyle({}, {stick: {radius: 0.15 }, sphere: {scale: 0.25}});
+			viewer.zoomTo();
+			viewer.zoom(4.0);
+			viewer.setViewStyle({style:'outline',color:'grey',width:0.02});
+			viewer.setBackgroundColor('#f9f9f9');
+			viewer.render();
+        
+			divElement.addEventListener('click', function() {
+				if (selectedContainer) {
+					selectedContainer.classList.remove('selected');
+				}
+				selectedContainer = divElement;
+				selectedViewer = viewer;
+				divElement.classList.add('selected');
+			});
+		});
+	});
 
-		.gallery {
-			display: flex;
-			flex-wrap: wrap;
-			width: 100%; /* Sets the width of the gallery to 80% of its parent */
-			margin: 0 auto; /* Centers the gallery horizontally */
-			justify-content: center; /* Centers the images within the gallery */
-		}
-		
-		.mol-text {
-		    position: absolute;
-		    width: 100%;
-		    bottom: 0.5px; /* Adjust this value to position the text higher or lower */
-		    text-align: center;
-		    font-family: Arial, sans-serif;
-		    font-size: 10px; /* Adjust as needed */
-			z-index: 100;
-			font-weight: bold;
-		}
-		
-		.button-container {
-			position: fixed;
-			top: 10px;
-			left: 50%;
-			transform: translateX(-50%);
-			display: flex;
-			gap: 10px;
-			z-index: 999;
-		}
+	// Toggle transition metals visibility
+	document.getElementById("toggle-transition-metals").addEventListener("click", function(){
+		document.querySelectorAll('[data-toggle="hide"]').forEach(div => {
+			div.style.display = div.style.display === "none" ? "block" : "none";
+		});
+	});
 
-</style>
-</head>
-<body>
+	// Toggle lanthanoids and actinoids visibility
+	document.getElementById("toggle-lanth-act-button").addEventListener("click", function(){
+		document.querySelectorAll('#C57_2, #C58, #C59, #C60, #C61, #C62, #C63, #C64, #C65, #C66, #C67, #C68, #C69, #C70, #C71, #C89_2, #C90, #C91, #C92, #C93, #C94, #C95, #C96, #C97, #C98, #C99, #C100, #C101, #C102, #C103').forEach(div => {
+			div.style.display = div.style.display === "none" ? "block" : "none";
+		});
+	});
 
-<div class="periodic-table">
-<div class="gallery">
-<div class="mol-container" id="C1"  data-current-element="H"><div class="mol-text">Hydrogen</div></div>
-<div class="mol-container" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" ><div class="mol-text"></div></div>
-<div class="mol-container" ><div class="mol-text"></div></div>
-<div class="mol-container" ><div class="mol-text"></div></div>
-<div class="mol-container" ><div class="mol-text"></div></div>
-<div class="mol-container" ><div class="mol-text"></div></div>
-<div class="mol-container" id="C2"  data-current-element="He"><div class="mol-text">Helium</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" id="C3"  data-current-element="Li"><div class="mol-text">Lithium</div></div>
-<div class="mol-container" id="C4"  data-current-element="Be"><div class="mol-text">Beryllium</div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" id="C5"  data-current-element="B"><div class="mol-text">Boron</div></div>
-<div class="mol-container" id="C6"  data-current-element="C"><div class="mol-text">Carbon</div></div>
-<div class="mol-container" id="C7"  data-current-element="N"><div class="mol-text">Nitrogen</div></div>
-<div class="mol-container" id="C8"  data-current-element="O"><div class="mol-text">Oxygen</div></div>
-<div class="mol-container" id="C9"  data-current-element="F"><div class="mol-text">Fluorine</div></div>
-<div class="mol-container" id="C10"  data-current-element="Ne"><div class="mol-text">Neon</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" id="C11"  data-current-element="Na"><div class="mol-text">Sodium</div></div>
-<div class="mol-container" id="C12"  data-current-element="Mg"><div class="mol-text">Magnesium</div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" id="C13"  data-current-element="Al"><div class="mol-text">Aluminium</div></div>
-<div class="mol-container" id="C14"  data-current-element="Si"><div class="mol-text">Silicium</div></div>
-<div class="mol-container" id="C15"  data-current-element="P"><div class="mol-text">Phosphor</div></div>
-<div class="mol-container" id="C16"  data-current-element="S"><div class="mol-text">Sulfur</div></div>
-<div class="mol-container" id="C17"  data-current-element="Cl"><div class="mol-text">Chlorine</div></div>
-<div class="mol-container" id="C18"  data-current-element="Ar"><div class="mol-text">Argon</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" id="C19"  data-current-element="K"><div class="mol-text">Potassium</div></div>
-<div class="mol-container" id="C20"  data-current-element="Ca"><div class="mol-text">Calcium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C21"  data-current-element="Sc"><div class="mol-text">Scandium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C22"  data-current-element="Ti"><div class="mol-text">Titanium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C23"  data-current-element="V"><div class="mol-text">Vanadium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C24"  data-current-element="Cr"><div class="mol-text">Chromium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C25"  data-current-element="Mn"><div class="mol-text">Manganese</div></div>
-<div class="mol-container"  data-toggle="hide" id="C26"  data-current-element="Fe"><div class="mol-text">Iron</div></div>
-<div class="mol-container"  data-toggle="hide" id="C27"  data-current-element="Co"><div class="mol-text">Cobalt</div></div>
-<div class="mol-container"  data-toggle="hide" id="C28"  data-current-element="Ni"><div class="mol-text">Nickel</div></div>
-<div class="mol-container"  data-toggle="hide" id="C29"  data-current-element="Cu"><div class="mol-text">Copper</div></div>
-<div class="mol-container"  data-toggle="hide" id="C30"  data-current-element="Zn"><div class="mol-text">Zinc</div></div>
-<div class="mol-container" id="C31"  data-current-element="Ga"><div class="mol-text">Gallium</div></div>
-<div class="mol-container" id="C32"  data-current-element="Ge"><div class="mol-text">Germanium</div></div>
-<div class="mol-container" id="C33"  data-current-element="As"><div class="mol-text">Arsenic</div></div>
-<div class="mol-container" id="C34"  data-current-element="Se"><div class="mol-text">Selenium</div></div>
-<div class="mol-container" id="C35"  data-current-element="Br"><div class="mol-text">Bromine</div></div>
-<div class="mol-container" id="C36"  data-current-element="Kr"><div class="mol-text">Krypton</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" id="C37"  data-current-element="Rb"><div class="mol-text">Rubidium</div></div>
-<div class="mol-container" id="C38"  data-current-element="Sr"><div class="mol-text">Strontium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C39"  data-current-element="Y"><div class="mol-text">Yttrium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C40"  data-current-element="Zr"><div class="mol-text">Zirconium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C41"  data-current-element="Nb"><div class="mol-text">Niobium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C42"  data-current-element="Mo"><div class="mol-text">Molybdenium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C43"  data-current-element="Tc"><div class="mol-text">Technetium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C44"  data-current-element="Ru"><div class="mol-text">Ruthenium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C45"  data-current-element="Rh"><div class="mol-text">Rhodium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C46"  data-current-element="Pd"><div class="mol-text">Palladium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C47"  data-current-element="Ag"><div class="mol-text">Silver</div></div>
-<div class="mol-container"  data-toggle="hide" id="C48"  data-current-element="Cd"><div class="mol-text">Cadmium</div></div>
-<div class="mol-container" id="C49"  data-current-element="In"><div class="mol-text">Indium</div></div>
-<div class="mol-container" id="C50"  data-current-element="Sn"><div class="mol-text">Tin</div></div>
-<div class="mol-container" id="C51"  data-current-element="Sb"><div class="mol-text">Antimony</div></div>
-<div class="mol-container" id="C52"  data-current-element="Te"><div class="mol-text">Tellurium</div></div>
-<div class="mol-container" id="C53"  data-current-element="I"><div class="mol-text">Iodine</div></div>
-<div class="mol-container" id="C54"  data-current-element="Xe"><div class="mol-text">Xenon</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" id="C55"  data-current-element="Cs"><div class="mol-text">Cesium</div></div>
-<div class="mol-container" id="C56"  data-current-element="Ba"><div class="mol-text">Barium</div></div>
-<div class="mol-container" data-toggle="hide"><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" id="C72"  data-current-element="Hf"><div class="mol-text">Hafnium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C73"  data-current-element="Ta"><div class="mol-text">Tantalum</div></div>
-<div class="mol-container"  data-toggle="hide" id="C74"  data-current-element="W"><div class="mol-text">Tungsten</div></div>
-<div class="mol-container"  data-toggle="hide" id="C75"  data-current-element="Re"><div class="mol-text">Rhenium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C76"  data-current-element="Os"><div class="mol-text">Osmium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C77"  data-current-element="Ir"><div class="mol-text">Iridium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C78"  data-current-element="Pt"><div class="mol-text">Platinum</div></div>
-<div class="mol-container"  data-toggle="hide" id="C79"  data-current-element="Au"><div class="mol-text">Gold</div></div>
-<div class="mol-container"  data-toggle="hide" id="C80"  data-current-element="Hg"><div class="mol-text">Mercury</div></div>
-<div class="mol-container" id="C81"  data-current-element="Tl"><div class="mol-text">Thallium</div></div>
-<div class="mol-container" id="C82"  data-current-element="Pb"><div class="mol-text">Lead</div></div>
-<div class="mol-container" id="C83"  data-current-element="Bi"><div class="mol-text">Bismuth</div></div>
-<div class="mol-container" id="C84"  data-current-element="Po"><div class="mol-text">Polonium</div></div>
-<div class="mol-container" id="C85"  data-current-element="At"><div class="mol-text">Astatine</div></div>
-<div class="mol-container" id="C86"  data-current-element="Rn"><div class="mol-text">Radon</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" id="C87"  data-current-element="Fr"><div class="mol-text">Francium</div></div>
-<div class="mol-container" id="C88"  data-current-element="Ra"><div class="mol-text">Radium</div></div>
-<div class="mol-container" data-toggle="hide"><div class="mol-text"></div></div>
-<div class="mol-container"  data-toggle="hide" id="C104"  data-current-element="Rf"><div class="mol-text">Rutherfordium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C105"  data-current-element="Db"><div class="mol-text">Dubnium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C106"  data-current-element="Sg"><div class="mol-text">Seaborgium</div></div>
-<div class="mol-container"  data-toggle="hide" id="C107"  data-current-element="Bh"><div class="mol-text">Bohrium</div></div>
-<div class="mol-container" data-toggle="hide" id="C108" data-current-element="Hs"><div class="mol-text">Hassium</div></div>
-<div class="mol-container" data-toggle="hide" id="C109" data-current-element="Mt"><div class="mol-text">Meitnerium</div></div>
-<div class="mol-container" data-toggle="hide" id="C110" data-current-element="Ds"><div class="mol-text">Darmstadtium</div></div>
-<div class="mol-container" data-toggle="hide" id="C111" data-current-element="Rg"><div class="mol-text">Roentgenium</div></div>
-<div class="mol-container" data-toggle="hide" id="C112" data-current-element="Cn"><div class="mol-text">Copernicium</div></div>
-<div class="mol-container" id="C113"  data-current-element="Nh"><div class="mol-text">Nihonium</div></div>
-<div class="mol-container" id="C114"  data-current-element="Fl"><div class="mol-text">Flerovium</div></div>
-<div class="mol-container" id="C115"  data-current-element="Mc"><div class="mol-text">Moscovium</div></div>
-<div class="mol-container" id="C116"  data-current-element="Lv"><div class="mol-text">Livermorium</div></div>
-<div class="mol-container" id="C117"  data-current-element="Ts"><div class="mol-text">Tennessine</div></div>
-<div class="mol-container" id="C118"  data-current-element="Og"><div class="mol-text">Oganesson</div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" id="C57_2" data-current-element="La"><div class="mol-text">Lanthanum</div></div>
-<div class="mol-container" data-toggle="hide" id="C58" data-current-element="Ce"><div class="mol-text">Cerium</div></div>
-<div class="mol-container" data-toggle="hide" id="C59" data-current-element="Pr"><div class="mol-text">Praseodymium</div></div>
-<div class="mol-container" data-toggle="hide" id="C60" data-current-element="Nd"><div class="mol-text">Neodymium</div></div>
-<div class="mol-container" data-toggle="hide" id="C61" data-current-element="Pm"><div class="mol-text">Promethium</div></div>
-<div class="mol-container" data-toggle="hide" id="C62" data-current-element="Sm"><div class="mol-text">Samarium</div></div>
-<div class="mol-container" data-toggle="hide" id="C63" data-current-element="Eu"><div class="mol-text">Europium</div></div>
-<div class="mol-container" data-toggle="hide" id="C64" data-current-element="Gd"><div class="mol-text">Gadolinium</div></div>
-<div class="mol-container" data-toggle="hide" id="C65" data-current-element="Tb"><div class="mol-text">Terbium</div></div>
-<div class="mol-container" data-toggle="hide" id="C66" data-current-element="Dy"><div class="mol-text">Dysprosium</div></div>
-<div class="mol-container" data-toggle="hide" id="C67" data-current-element="Ho"><div class="mol-text">Holmium</div></div>
-<div class="mol-container" data-toggle="hide" id="C68" data-current-element="Er"><div class="mol-text">Erbium</div></div>
-<div class="mol-container" data-toggle="hide" id="C69" data-current-element="Tm"><div class="mol-text">Thulium</div></div>
-<div class="mol-container" data-toggle="hide" id="C70" data-current-element="Yb"><div class="mol-text">Ytterbium</div></div>
-<div class="mol-container" data-toggle="hide" id="C71" data-current-element="Lu"><div class="mol-text">Lutetium</div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-</div>
-<div class="gallery">
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-<div class="mol-container" data-toggle="hide" id="C89_2" data-current-element="Ac"><div class="mol-text">Actinium</div></div>
-<div class="mol-container" data-toggle="hide" id="C90" data-current-element="Th"><div class="mol-text">Thorium</div></div>
-<div class="mol-container" data-toggle="hide" id="C91" data-current-element="Pa"><div class="mol-text">Protactinium</div></div>
-<div class="mol-container" data-toggle="hide" id="C92" data-current-element="U"><div class="mol-text">Uranium</div></div>
-<div class="mol-container" data-toggle="hide" id="C93" data-current-element="Np"><div class="mol-text">Neptunium</div></div>
-<div class="mol-container" data-toggle="hide" id="C94" data-current-element="Pu"><div class="mol-text">Plutonium</div></div>
-<div class="mol-container" data-toggle="hide" id="C95" data-current-element="Am"><div class="mol-text">Americium</div></div>
-<div class="mol-container" data-toggle="hide" id="C96" data-current-element="Cm"><div class="mol-text">Curium</div></div>
-<div class="mol-container" data-toggle="hide" id="C97" data-current-element="Bk"><div class="mol-text">Berkelium</div></div>
-<div class="mol-container" data-toggle="hide" id="C98" data-current-element="Cf"><div class="mol-text">Californium</div></div>
-<div class="mol-container" data-toggle="hide" id="C99" data-current-element="Es"><div class="mol-text">Einsteinium</div></div>
-<div class="mol-container" data-toggle="hide" id="C100" data-current-element="Fm"><div class="mol-text">Fermium</div></div>
-<div class="mol-container" data-toggle="hide" id="C101" data-current-element="Md"><div class="mol-text">Mendelevium</div></div>
-<div class="mol-container" data-toggle="hide" id="C102" data-current-element="No"><div class="mol-text">Nobelium</div></div>
-<div class="mol-container" data-toggle="hide" id="C103" data-current-element="Lr"><div class="mol-text">Lawrencium</div></div>
-<div class="mol-container" data-toggle="hide" ><div class="mol-text"></div></div>
-</div>
-</div>
-<div class="button-container">
-<button id="toggle-transition-metals">toggle transition metals</button>
-<button id="toggle-lanth-act-button">toggle lanthanoids and actinoids</button>
-<button id="toggle-dark-mode">toggle dark mode</button>
-<input type="text" data-coloris>
-</div>
-<script>
-let selectedViewer = null;
-let selectedContainer = null;
-C_S = C_S;
-$(document).ready(function() {   
-    var divElements = document.querySelectorAll("[id^='C']");
-    
-    divElements.forEach(function(divElement) {
-        // Get the currentElement value from the data attribute of each div element
-        var currentElement = divElement.getAttribute("data-current-element");
-      
-        // Create a unique viewer for each div element
-        var viewer = $3Dmol.createViewer(divElement.id, {
-            // defaultcolors: $3Dmol.elementColors.rasmol, nomouse: true
-			// defaultcolors: $3Dmol.elementColors.default, nomouse: true
-			// defaultcolors: $3Dmol.elementColors.orangeCarbon, nomouse: true
-			// defaultcolors: $3Dmol.elementColors.Jmol, nomouse: true
-			defaultcolors: C_S, nomouse: true
-        });
+	// Dark mode toggle
+	document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+		document.body.classList.toggle('dark-mode');
+	});
 
-        var xyz = `1
-* (null), Energy   -276.0000000    
-${currentElement}    0.0000000  0.0000000   0.0000000 
-        `; 
-        viewer.addModel(xyz, "xyz");
-        viewer.setStyle({}, {stick: {radius: 0.15 }, sphere: {scale: 0.25}});
-        viewer.zoomTo();
-        viewer.zoom(4.0);
-        viewer.setViewStyle({style:'outline',color:'grey',width:0.02});
-		viewer.setBackgroundColor('#f9f9f9');
-        viewer.render();
-		
-		divElement.addEventListener('click', function() {
-        if (selectedContainer) {
-            selectedContainer.classList.remove('selected');
+	// Color Picker (Coloris)
+	Coloris({
+		themeMode: 'dark',
+		alpha: false
+	});
+
+	document.querySelector('[data-coloris]').addEventListener('input', function(event) {
+    if (selectedViewer && selectedContainer) {
+        const pickedColor = event.target.value;
+        const model = selectedViewer.getModel();
+
+        if (model) {
+            // Get the element type of the currently selected molecule
+            let element = selectedContainer.getAttribute("data-current-element");
+
+            if (element) {
+                // Convert the picked color to a hex string without '#'
+                const hexColor = parseInt(pickedColor.replace("#", ""), 16);
+
+                // Get all atoms of the selected element and update their color
+                let atoms = model.selectedAtoms({ elem: element });
+                if (atoms.length > 0) {
+                    atoms.forEach(atom => {
+                        atom.color = hexColor;
+                    });
+
+                    // Reapply the model to update the visualization
+                    model.setStyle({}, { stick: { radius: 0.15 }, sphere: { scale: 0.25 } });
+                    selectedViewer.render();
+
+                    // Store the color in dataset for later PyMOL export
+                    selectedContainer.dataset.currentColor = `#${pickedColor.replace("#", "")}`;
+                }
+            }
         }
-        selectedContainer = divElement;
-        selectedViewer = viewer;
-        divElement.classList.add('selected');
+    }
+});
+
+
+function generatePymolAndDownload() {
+    console.log("Generating PyMOL Colors and Downloading .inp File..."); // Debugging log
+
+    let pymolCommands = "";
+
+    document.querySelectorAll(".mol-container").forEach(container => {
+        let element = container.getAttribute("data-current-element");
+        let viewer = container.viewerInstance; // Retrieve stored viewer
+
+        if (element && viewer) {
+            let colorHex = "#999999"; // Default color
+
+            let model = viewer.getModel(); // Get model
+            if (model) {
+                let atoms = model.selectedAtoms({}); // Get all atoms
+                if (atoms.length > 0 && atoms[0].color) {
+                    colorHex = "#" + atoms[0].color.toString(16).padStart(6, '0');
+                }
+            }
+
+            let pymolColor = `color 0x${colorHex.replace("#", "")}, (name ${element}*)`;
+            pymolCommands += pymolColor + "\n";
+        }
     });
-    });
-});
 
-document.getElementById("toggle-transition-metals").addEventListener("click", function(){
-	document.querySelectorAll('[data-toggle="hide"]').forEach(div => {
-		div.style.display=div.style.display==="none" ? "block" : "none" ;
-	});
-});
+    if (!pymolCommands) {
+        console.warn("No colors found. Make sure molecules are loaded.");
+        return; // Exit function if no data
+    }
 
-document.getElementById("toggle-lanth-act-button").addEventListener("click", function(){
-	document.querySelectorAll('#C57_2, #C58, #C59, #C60, #C61, #C62, #C63, #C64, #C65, #C66, #C67, #C68, #C69, #C70, #C71, #C89_2, #C90, #C91, #C92, #C93, #C94, #C95, #C96, #C97, #C98, #C99, #C100, #C101, #C102, #C103').forEach(div => {
-		div.style.display = div.style.display === "none" ? "block" : "none";
-	});
-});
+    console.log("Generated PyMOL Colors:\n", pymolCommands); // Debugging log
 
-document.getElementById('toggle-dark-mode').addEventListener('click', function() {
-    document.body.classList.toggle('dark-mode');
-});
-
-Coloris({
-  themeMode: 'dark',
-  alpha: false
-});
-document.querySelector('[data-coloris]').addEventListener('input', function(event) {
-  if (selectedViewer) {
-    const pickedColor = event.target.value;
-    selectedViewer.setStyle({}, {
-      stick: { radius: 0.15, color: pickedColor },
-      sphere: { scale: 0.25, color: pickedColor }
-    });
-    selectedViewer.render();
-  }
-});
+    // Create and Download the .inp file
+    const blob = new Blob([pymolCommands.trim()], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'pymol_colors.inp';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 
 
 
-</script>
 
-</body>
+	
+	</script>
+	
+	</body>
