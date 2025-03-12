@@ -8,7 +8,7 @@
 	<style>
 	
 			body {
-				background-color: #454141;
+				background-color: #231F20;
 			}
 			
 			body.dark-mode {
@@ -109,6 +109,14 @@
 				background-color: #636363; /* Slightly darker on hover */
 			}
 	
+			.logo-container{
+				position: fixed;
+				bottom: 15px;
+				left: 15px;
+				display: flex;
+				gap: 10px;
+				z-index: 0;
+			}
 	</style>
 	
 	</head>
@@ -303,8 +311,10 @@
 	<button id="toggle-lanth-act-button">toggle lanthanoids and actinoids</button>
 	<button id="toggle-dark-mode">toggle dark mode</button>
 	<input type="text" data-coloris>
-	<button onclick="generatePymolAndDownload()">PyMol color scheme</button>
+	<button onclick="generatePymolAndDownload()">PyMol</button>
+	<button onclick="generate3DmoljsAndDownload()">3Dmol.js</button>
 	</div>
+	<div class="logo-container"><img src="images/svatunek_lab_logo.png" width="100" height="100" alt="svatunek lab logo"></div>
 	
 	<script>
 	let selectedViewer = null;
@@ -423,13 +433,14 @@ function generatePymolAndDownload() {
         let viewer = container.viewerInstance; // Retrieve stored viewer
 
         if (element && viewer) {
-            let colorHex = "#999999"; // Default color
+            let colorHex = "#000000"; // Default color
 
             let model = viewer.getModel(); // Get model
             if (model) {
                 let atoms = model.selectedAtoms({}); // Get all atoms
                 if (atoms.length > 0 && atoms[0].color) {
-                    colorHex = "#" + atoms[0].color.toString(16).padStart(6, '0');
+                     // Convert integer to normal hex format #RRGGBB
+                    colorHex = "#" + atoms[0].color.toString(16).padStart(6, '0').toUpperCase();
                 }
             }
 
@@ -455,9 +466,49 @@ function generatePymolAndDownload() {
     document.body.removeChild(link);
 }
 
+function generate3DmoljsAndDownload() {
+    console.log("Generating 3Dmol.js color scheme and downloading as .js file...");
 
+    let colorScheme = {};
 
+    document.querySelectorAll(".mol-container").forEach(container => {
+        let element = container.getAttribute("data-current-element");
+        let viewer = container.viewerInstance; // Retrieve stored viewer
 
+        if (element && viewer) {
+            let colorHex = "#999999"; // Default color
+
+            let model = viewer.getModel(); // Get model
+            if (model) {
+                let atoms = model.selectedAtoms({}); // Get all atoms
+                if (atoms.length > 0 && atoms[0].color) {
+                    colorHex = "#" + atoms[0].color.toString(16).padStart(6, '0');
+                }
+            }
+
+            colorScheme[element] = colorHex;
+        }
+    });
+
+    if (Object.keys(colorScheme).length === 0) {
+        console.warn("No colors found. Make sure molecules are loaded.");
+        return; // Exit function if no data
+    }
+
+    console.log("Generated 3Dmol.js Color Scheme:", colorScheme);
+
+    // Convert object to a properly formatted JavaScript file content
+    let jsContent = `var C_S = ${JSON.stringify(colorScheme, null, 4)};`;
+
+    // Create and Download the .js file
+    const blob = new Blob([jsContent], { type: 'application/javascript' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = '3dmol_colors.js';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 	
 	</script>
